@@ -1,0 +1,2 @@
+class DocumentRetrievalError(Exception):
+    pass

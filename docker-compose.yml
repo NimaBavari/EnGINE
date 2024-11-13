@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  search-api:
+    build:
+      context: search/api
+    ports:
+      - "5050:5050"
+    environment:
+      - MLAPI_BASE_URL=localhost:5070
+      - ES_CONN_STR=... # TODO: set this
+      - REDIS_RESULTS_CONN_STR=... # TODO: set this
+    depends_on:
+      - ml-api
+
+  crawler:
+    build:
+      context: search/crawler
+    environment:
+      - ES_CONN_STR=... # TODO: set this
+      - REDIS_CRAWLER_CONN_STR=... # TODO: set this
+
+  client:
+    image: python:3.10.7-slim
+    volumes:
+      - ./search/client:/app
+    working_dir: /app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - search-api
+    command: python3 -m http.server 8000 --directory /app
+
+  ml-api:
+    build:
+      context: search-analytics/mlapi
+    ports:
+      - "5070:5070"
+    environment:
+      - POSTGRES_URI=... # TODO: set this
+
+  pipeline:
+    build:
+      context: search-analytics/pipeline
+    environment:
+      - MLAPI_BASE_URL=localhost:5070
+      - PIPELINE_RUN_PERIOD=... # TODO: set this
+      - REDIS_RESULTS_CONN_STR=... # TODO: set this
+    depends_on:
+      - ml-api
+
+networks:
+  default:
+    name: transport
+    external: true
