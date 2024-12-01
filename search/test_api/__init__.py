@@ -3,8 +3,8 @@ import unittest
 from unittest.mock import MagicMock, patch
 
 from api.custom_exc import DocumentRetrievalError
-from api.main import app, get_recommendations, redis_instance, repo
-from flask import Flask
+from api.main import app, get_recommendations, redis_instance, repo  # noqa: F401
+from flask import Flask  # noqa: F401
 
 
 class SearchTestCase(unittest.TestCase):

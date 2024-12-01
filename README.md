@@ -36,11 +36,25 @@ make cleanup
 
 to run linting and formatting.
 
+### Set Up Dev Environment
+
+Run:
+
+```sh
+make set_dev_env
+```
+
+to set up the dev environment.
+
 ### Testing
+
+Run:
 
 ```sh
 make test
 ```
+
+to start the tests
 
 ### Spin Up
 
