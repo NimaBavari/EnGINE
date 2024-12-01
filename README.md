@@ -46,6 +46,9 @@ make set_dev_env
 
 to set up the dev environment.
 
+This sets:
+- git pre-commit hook
+
 ### Testing
 
 Run:
