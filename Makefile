@@ -3,11 +3,12 @@ cleanup:
 	./cleanup.sh
 
 set_dev_env:
-	rm -f .git/hooks/* .git/hooks/.[!.]* .git/hooks/..?*
-	cp cleanup.sh .git/hooks/pre-commit
+	chmod +x set_pre_commit.sh
+	./set_pre_commit.sh
 
 test:
-	cd search/ && python3 -m unittest test_api
+	chmod +x test.sh
+	./test.sh
 
 start:
 	chmod +x start.sh
