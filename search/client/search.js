@@ -1,5 +1,5 @@
-const SEARCHAPI_BASE_URL = 'localhost:5050';
-const MLAPI_BASE_URL = 'localhost:5070';
+const SEARCHAPI_BASE_URL = 'http://localhost:5050';
+const MLAPI_BASE_URL = 'http://localhost:5070';
 
 const searchForm = document.getElementById('searchForm');
 const resultsList = document.getElementById('resultsList');

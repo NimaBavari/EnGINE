@@ -87,7 +87,7 @@ class PostgresMLAPIRepository:
     def insert_search_query(self, user_profile_id: int, query: str, visited_urls: List[str]) -> int:
         try:
             self.cursor.execute(
-                "insert into search_queries (user_profile_id, query, visited_urls) values (%s, %s, %s) returning id;",
+                "insert into search_queries (user_profile_id, body, visited_urls) values (%s, %s, %s) returning id;",
                 (user_profile_id, query, visited_urls),
             )
         except psycopg2.Error as e:

@@ -8,8 +8,8 @@ services:
       - "5050:5050"
     environment:
       - MLAPI_BASE_URL=localhost:5070
-      - ES_CONN_STR=... # TODO: set this
-      - REDIS_RESULTS_CONN_STR=... # TODO: set this
+      - ES_CONN_STR=http://host.docker.internal:9200
+      - REDIS_RESULTS_CONN_STR=redis://host.docker.internal:6379/0
     depends_on:
       - ml-api
 
@@ -17,8 +17,8 @@ services:
     build:
       context: search/crawler
     environment:
-      - ES_CONN_STR=... # TODO: set this
-      - REDIS_CRAWLER_CONN_STR=... # TODO: set this
+      - ES_CONN_STR=http://host.docker.internal:9200
+      - REDIS_CRAWLER_CONN_STR=redis://host.docker.internal:6379/1
 
   client:
     image: python:3.10.7-slim
@@ -37,15 +37,15 @@ services:
     ports:
       - "5070:5070"
     environment:
-      - POSTGRES_URI=... # TODO: set this
+      - POSTGRES_URI=postgresql://engine_user:engine_pass@host.docker.internal:5432/engine  # TODO: username password might be set better
 
   pipeline:
     build:
       context: search-analytics/pipeline
     environment:
       - MLAPI_BASE_URL=localhost:5070
-      - PIPELINE_RUN_PERIOD=... # TODO: set this
-      - REDIS_RESULTS_CONN_STR=... # TODO: set this
+      - PIPELINE_RUN_PERIOD=300
+      - REDIS_RESULTS_CONN_STR=redis://host.docker.internal:6379/0
     depends_on:
       - ml-api
 

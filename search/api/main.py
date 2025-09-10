@@ -72,7 +72,11 @@ def search() -> Tuple[Response, int]:
         if rec in documents:
             documents[rec]["score"] = 1
         else:
-            documents[rec] = {}  # TODO: get the content somehow
+            try:
+                rec_content = repo.get_document_content(rec)
+                documents[rec] = {"id": rec, "content": rec_content, "url": rec, "score": 1}
+            except DocumentRetrievalError:
+                continue
 
     ranked_documents = sorted(documents.values(), key=lambda doc: doc["score"], reverse=True)
     response_dict["pages"] = ranked_documents

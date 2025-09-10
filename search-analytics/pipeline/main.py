@@ -39,7 +39,14 @@ while True:
 
         df, vectorizer, sim_matrix = train_model(search_queries, vectorizer)
         redis_instance.set(
-            user_profile_id, json.dumps({"vectorizer": vectorizer, "dataframe": df, "similarity_matrix": sim_matrix})
+            user_profile_id,
+            json.dumps(
+                {
+                    "vectorizer": vectorizer.get_params(),
+                    "dataframe": df.to_json(),
+                    "similarity_matrix": sim_matrix.tolist(),
+                }
+            ),
         )
 
     elapsed = time.perf_counter() - start
