@@ -17,14 +17,17 @@ Simple web search and analytics system.
 * Content-based recommender system
 * Implements a simple data pipeline that gathers user profiles, search queries, and clicked URLs, uses this data to train the neural network, performs predictions, and stores the results in adaptable storage for prioritising user search rankings.
 
-## Remaining TODOs
+## Usage
 
-* [ ] Set up a scalable elasticsearch cluster
-* [ ] Set up a scalable redis server
-* [ ] Set up a scalable Postgres server
-* [ ] Design a deployment strategy
+### Spin Up
 
-## Scripts
+Run:
+
+```sh
+make start
+```
+
+to spin up the whole application.
 
 ### Linting and Formatting
 
@@ -58,16 +61,6 @@ make test
 ```
 
 to start the tests
-
-### Spin Up
-
-Run:
-
-```sh
-make start
-```
-
-to spin up the whole application.
 
 ## Tools and Techniques Used
 
