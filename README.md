@@ -12,7 +12,7 @@ Simple web search and analytics system.
 * Employs multi-threaded web crawling techniques complemented by caching mechanisms and cache validation strategies
 * Supports text retrieval from documents using an inverted index database for efficient search capabilities.
 
-### Saerch Analytics
+### Search Analytics
 
 * Content-based recommender system
 * Implements a simple data pipeline that gathers user profiles, search queries, and clicked URLs, uses this data to train the neural network, performs predictions, and stores the results in adaptable storage for prioritising user search rankings.
