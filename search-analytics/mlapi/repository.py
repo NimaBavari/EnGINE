@@ -114,7 +114,7 @@ class PostgresMLAPIRepository:
 
         return {"id": id_, "user_profile_id": user_profile_id, "body": body, "visited_urls": visited_urls}
 
-    def append_visited_url(self, search_query_id, new_url) -> None:
+    def append_visited_url(self, search_query_id: int, new_url: str) -> None:
         try:
             self.cursor.execute(
                 "update search_queries set visited_urls = array_append(visited_urls, %s) where id = %s;",

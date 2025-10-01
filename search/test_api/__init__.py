@@ -8,7 +8,7 @@ from flask import Flask  # noqa: F401
 
 
 class SearchTestCase(unittest.TestCase):
-    def setUp(self):
+    def setUp(self) -> None:
         self.app = app.test_client()
         self.app.testing = True
 
